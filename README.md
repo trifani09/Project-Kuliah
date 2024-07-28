@@ -6,7 +6,6 @@
 ```
 - go to directory project
 - clone this project!
-- create branch
 - do command : git pull
 - start your xampp server
 - create database with db name : tk4_kel7

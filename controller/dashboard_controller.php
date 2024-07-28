@@ -35,5 +35,4 @@
     include "../view/template/menu.html";
     include "../view/dashboard/page.php";
     include "../view/template/footer.html";
-
 ?>

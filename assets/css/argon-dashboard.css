@@ -20290,7 +20290,7 @@ fieldset:disabled .btn {
 }
 
 .btn-edit {
-  width: 130px;
+  width: 145px;
 }
 
 .btn-edit,
@@ -20315,7 +20315,7 @@ fieldset:disabled .btn {
   border: 2px solid #EB0000 !important;
   padding: 10px 20px;
   color: #fff;
-  width: 130px;
+  width: 145px;
   transition: all 0.3s ease;
 }
 
@@ -20916,6 +20916,11 @@ fieldset:disabled .btn {
 
 .card-header h6 {
   font-size: 24px !important;
+}
+
+.cstm-sz {
+  text-align: center;
+  margin-top: 10px;
 }
 
 .card .card-header {
@@ -25088,6 +25093,7 @@ p {
   font-weight: 700 !important;
   margin-bottom: 0;
   letter-spacing: 0.1px;
+  font-size: 32px;
 }
 
 .font-italic {

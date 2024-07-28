@@ -92,7 +92,7 @@
         <div class="col-lg-12 mb-lg-0 mb-0">
           <div class="card z-index-2 h-100">
             <div class="card-header pb-0 pt-3 bg-transparent">
-              <h6 class="text-capitalize">Penjualan Barang Bulan July 2024</h6>
+              <h6 class="text-capitalize cstm-sz">Penjualan Barang Bulan July 2024</h6>
             </div>
             <div class="card-body p-3">
               <div class="chart">
@@ -106,8 +106,6 @@
   </main>
   <script src="../assets/js/plugins/chartjs.min.js"></script>
   <script>
-    var ctx1 = document.getElementById("chart-line").getContext("2d");
-    var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
     var barang = [];
     var penjualan = [];
     var pembelian = [];
@@ -117,20 +115,20 @@
     var total_labarugi = 0;
 
     <?php
-    foreach ($penjualan as $d) {
-    ?>
-    barang.push("<?= $d["nama"] ?>");
-    penjualan.push(<?= $d["total"] ?>);
-    <?php
-    }
+      foreach ($penjualan as $d) {
+      ?>
+        barang.push("<?= $d["nama"] ?>");
+        penjualan.push(<?= $d["total"] ?>);
+      <?php
+      }
     ?>
     
     <?php
-    foreach ($pembelian as $d) {
-    ?>
-    pembelian.push(<?= $d["total"] ?>);
-    <?php
-    }
+      foreach ($pembelian as $d) {
+      ?>
+        pembelian.push(<?= $d["total"] ?>);
+      <?php
+      }
     ?>
 
     for (let i = 0; i < penjualan.length; i++) {
@@ -145,81 +143,84 @@
     document.getElementById("total_penjualan").innerHTML = "Rp "+total_penjualan.toLocaleString('en-US');
     document.getElementById("total_pembelian").innerHTML = "Rp "+total_pembelian.toLocaleString('en-US');
 
+    var ctx1 = document.getElementById("chart-line").getContext("2d");
+    var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
+
     gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
     gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
     gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
+
+    
     new Chart(ctx1, {
-      type: "line",
-      data: {
+    type: "line",
+    data: {
         labels: barang,
         datasets: [{
-          label: "Laba Rugi",
-          tension: 0.4,
-          borderWidth: 0,
-          pointRadius: 0,
-          borderColor: "#5e72e4",
-          backgroundColor: gradientStroke1,
-          borderWidth: 3,
-          fill: true,
-          data: labarugi,
-          maxBarThickness: 6
-
-        }],
-      },
-      options: {
+            label: "Laba Rugi",
+            tension: 0.4,
+            borderWidth: 3,
+            pointRadius: 0,
+            borderColor: "#454B61",
+            backgroundColor: gradientStroke1,
+            fill: true,
+            data: labarugi,
+            maxBarThickness: 6
+        }]
+    },
+    options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-          legend: {
-            display: false,
-          }
+            legend: {
+                display: false
+            }
         },
         interaction: {
-          intersect: false,
-          mode: 'index',
+            intersect: false,
+            mode: 'index'
         },
         scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5]
+            y: {
+                grid: {
+                    drawBorder: true,
+                    display: true,
+                    drawOnChartArea: true,
+                    drawTicks: false,
+                    borderDash: [5, 5]
+                },
+                ticks: {
+                    display: true,
+                    padding: 10,
+                    color: '#333',
+                    font: {
+                        size: 11,
+                        family: "Poppins",
+                        style: 'normal',
+                        lineHeight: 2
+                    }
+                }
             },
-            ticks: {
-              display: true,
-              padding: 10,
-              color: '#fbfbfb',
-              font: {
-                size: 11,
-                family: "Open Sans",
-                style: 'normal',
-                lineHeight: 2
-              },
+            x: {
+                grid: {
+                    drawBorder: false,
+                    display: false,
+                    drawOnChartArea: false,
+                    drawTicks: false,
+                    borderDash: [5, 5]
+                },
+                ticks: {
+                    display: true,
+                    color: '#333',
+                    padding: 20,
+                    font: {
+                        size: 11,
+                        family: "Poppins",
+                        style: 'normal',
+                        lineHeight: 2
+                    }
+                }
             }
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false,
-              borderDash: [5, 5]
-            },
-            ticks: {
-              display: true,
-              color: '#ccc',
-              padding: 20,
-              font: {
-                size: 11,
-                family: "Open Sans",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-        },
-      },
-    });
+        }
+    }
+});
   </script>
